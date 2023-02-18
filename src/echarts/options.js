@@ -1,445 +1,517 @@
 import * as echarts from 'echarts'
-export const options1 = {
-    title: {
-      text: '天气变化',
-      textStyle: {
-        color: '#242424'
-      }
-    },
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'cross',
-        label: {
-          backgroundColor: '#6a7985'
-        }
-      }
-    },
-    legend: {
-      data: ['温度', '湿度']
-    },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
-    },
-    xAxis: [
-      {
-        type: 'category',
-        boundaryGap: false,
-        nameTextStyle: {
-          color: '#8a8a8',
-          fontSize: 13
-        },
-        axisLine: {
-          show: false
-        },
-        axisTick: {
-          show: false
-        },
-        data: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
-      }
-    ],
-    yAxis: [
-      {
-        type: 'value',
-        axisLine: {
-          show: true,
-          lineStyle: {
-            color: '#d2d2d2'
-          }
-        },
-        axisLabel: {
-          color: '#8a8a8a'
-        }
-      }
-    ],
-  color: ['#a91f28', '#701aac'],
-    series: [
-      {
-        name: '温度',
-        type: 'line',
-        stack: 'Total',
-        smooth: true,
-        areaStyle: {
-          normal: {
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-              offset: 0,
-              color: 'rgba(214,30,30,1)'
-            },
-              {
-                offset: 1,
-                color: 'rgba(219,49,49,0.3)'
-              }
-            ], false),
-            shadowColor: 'rgba(108,80,243, 0.9)',
-            shadowBlur: 20
-          }
-        },
-        emphasis: {
-          focus: 'series'
-        },
-        data: [120, 132, 101, 134, 90, 230, 210]
-      },
-      {
-        name: '湿度',
-        type: 'line',
-        stack: 'Total',
-        smooth: true,
-        areaStyle: {
-          normal: {
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-              offset: 0,
-              color: 'rgba(110,28,200,.7)'
-            },
-              {
-                offset: 1,
-                color: 'rgba(110,28,200,0.2)'
-              }
-            ], false),
-            shadowColor: 'rgba(108,80,243, 0.9)',
-            shadowBlur: 20
-          }
-        },
-        emphasis: {
-          focus: 'series'
-        },
-        data: [220, 182, 191, 234, 290, 330, 310]
-      }
-    ]
-}
-
-var colorList = [{
-  type: 'linear',
-  x: 0,
-  y: 0,
-  x2: 1,
-  y2: 1,
-  colorStops: [{
-    offset: 0,
-    color: 'rgba(51,192,205,0.01)' // 0% 处的颜色
-  },
-    {
-      offset: 1,
-      color: 'rgba(51,192,205,0.57)' // 100% 处的颜色
-    }
-  ],
-  globalCoord: false // 缺省为 false
-},
-  {
-    type: 'linear',
-    x: 1,
-    y: 0,
-    x2: 0,
-    y2: 1,
-    colorStops: [{
-      offset: 0,
-      color: 'rgba(115,172,255,0.02)' // 0% 处的颜色
-    },
-      {
-        offset: 1,
-        color: 'rgba(115,172,255,0.67)' // 100% 处的颜色
-      }
-    ],
-    globalCoord: false // 缺省为 false
-  },
-  {
-    type: 'linear',
-    x: 1,
-    y: 0,
-    x2: 0,
-    y2: 0,
-    colorStops: [{
-      offset: 0,
-      color: 'rgba(158,135,255,0.02)' // 0% 处的颜色
-    },
-      {
-        offset: 1,
-        color: 'rgba(158,135,255,0.57)' // 100% 处的颜色
-      }
-    ],
-    globalCoord: false // 缺省为 false
-  },
-  {
-    type: 'linear',
-    x: 0,
-    y: 1,
-    x2: 0,
-    y2: 0,
-    colorStops: [{
-      offset: 0,
-      color: 'rgba(252,75,75,0.01)' // 0% 处的颜色
-    },
-      {
-        offset: 1,
-        color: 'rgba(252,75,75,0.57)' // 100% 处的颜色
-      }
-    ],
-    globalCoord: false // 缺省为 false
-  },
-  {
-    type: 'linear',
-    x: 1,
-    y: 1,
-    x2: 1,
-    y2: 0,
-    colorStops: [{
-      offset: 0,
-      color: 'rgba(253,138,106,0.01)' // 0% 处的颜色
-    },
-      {
-        offset: 1,
-        color: '#FDB36ac2' // 100% 处的颜色
-      }
-    ],
-    globalCoord: false // 缺省为 false
-  },
-  {
-    type: 'linear',
-    x: 0,
-    y: 0,
-    x2: 1,
-    y2: 0,
-    colorStops: [{
-      offset: 0,
-      color: 'rgba(254,206,67,0.12)' // 0% 处的颜色
-    },
-      {
-        offset: 1,
-        color: '#FECE4391' // 100% 处的颜色
-      }
-    ],
-    globalCoord: false // 缺省为 false
+var xData = (function () {
+  var data = [];
+  for (var i = 1; i < 13; i++) {
+    data.push(i + "月份");
   }
-]
-var colorLine = ['#33C0CD', '#73ACFF', '#9E87FF', '#FE6969', '#FDB36A', '#FECE43']
+  return data;
+})();
 
-function getRich () {
-  const result = {}
-  colorLine.forEach((v, i) => {
-    result[`hr${i}`] = {
-      backgroundColor: colorLine[i],
-      borderRadius: 3,
-      width: 3,
-      height: 3,
-      padding: [3, 3, 0, -12]
-    }
-    result[`a${i}`] = {
-      padding: [-11, 6, -20, 6],
-      color: colorLine[i],
-      backgroundColor: 'transparent',
-      fontSize: 12
-    }
-  })
-  return result
-}
-// const pieData = [{
-//   '"name"': '北京',
-//   '"value"': 25
-// }, {
-//   '"name"': '上海',
-//   '"value"': 20
-// }, {
-//   '"name"': '广州',
-//   '"value"': 18
-// }, {
-//   '"name"': '深圳',
-//   "value": 15
-// }, {
-//   "name": '未知',
-//   "value": 13
-// }, {
-//   '"name"': '海外',
-//   '"value"': 9
-// }].sort((a, b) => {
-//   return b.value - a.value
-// })
-// pieData.forEach((v, i) => {
-//   v.labelLine = {
-//     lineStyle: {
-//       width: 1,
-//       color: colorLine[i]
-//     }
-//   }
-// })
-export const option2 = {
-  series: [{
-    type: 'pie',
-    radius: '60%',
-    center: ['50%', '50%'],
-    clockwise: true,
-    avoidLabelOverlap: true,
-    label: {
-      show: true,
-      position: 'outside',
-      formatter: function (params) {
-        const name = params.name
-        const percent = params.percent + '%'
-        const index = params.dataIndex
-        return [`{a${index}|${name}：${percent}}`, `{hr${index}|}`].join('\n')
+export const ageOptions = {
+  title: {
+    text: "男女人数统计",
+    x: "2%",
+    y: "2%",
+    textStyle: {
+      color: "#222222",
+      fontSize: "18",
+    },
+    subtextStyle: {
+      color: "#90979c",
+      fontSize: "16",
+    },
+  },
+  tooltip: {
+    trigger: "axis",
+    axisPointer: {
+      type: "shadow",
+      textStyle: {
+        color: "#fff",
       },
-      rich: getRich()
     },
-    itemStyle: {
-      normal: {
-        color: function (params) {
-          return colorList[params.dataIndex]
-        }
-      }
-    },
-    data: [{
-      name: '上海',
-      value: 200
-    }, {
-      name: '北京',
-      value: 300
-    }, {
-      name: '广州',
-      value: 400
-    }, {
-      name: '深圳',
-      value: 500
-    }, {
-      name: '郑州',
-      value: 200
-    }, {
-      name: '武汉',
-      value: 300
-    }],
-    roseType: 'radius'
-  }]
-}
-
-export const option3 = {
-  backgroundColor: '#fff',
-  tooltip: {},
+  },
   grid: {
-    top: '8%',
-    left: '1%',
-    right: '1%',
-    bottom: '8%',
-    containLabel: true
+    borderWidth: 0,
+    top: '15%',
+    bottom: '14%',
+    right: '4%',
+    left: '8%',
+    textStyle: {
+      color: "#fff",
+    },
   },
   legend: {
-    itemGap: 50,
-    data: ['注册总量', '最新注册量'],
+    x: "50%",
+    top: "4%",
     textStyle: {
-      color: '#333',
-      borderColor: '#fff'
-    }
+      color: "#90979c",
+    },
+    data: ["女", "男", "平均"],
   },
-  xAxis: [{
-    type: 'category',
-    boundaryGap: true,
-    axisLine: {
-      show: true,
-      lineStyle: {
-        color: '#f9f9f9'
-      }
-    },
-    axisLabel: {
-      textStyle: {
-        color: '#d1e6eb',
-        margin: 15
-      }
-    },
-    axisTick: {
-      show: false
-    },
-    data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月']
-  }],
-  yAxis: [{
-    type: 'value',
-    min: 0,
-    // max: 140,
-    splitNumber: 7,
-    splitLine: {
-      show: true,
-      lineStyle: {
-        color: '#e2e2e2'
-      }
-    },
-    axisLine: {
-      show: false
-    },
-    axisLabel: {
-      margin: 20,
-      textStyle: {
-        color: '#d1e6eb'
 
-      }
-    },
-    axisTick: {
-      show: false
-    }
-  }],
-  series: [{
-    name: '注册总量',
-    type: 'line',
-    // smooth: true, //是否平滑曲线显示
-    showAllSymbol: true,
-    symbol: 'emptyCircle',
-    symbolSize: 6,
-    lineStyle: {
-      normal: {
-        color: '#28ffb3'
-      },
-      borderColor: '#f0f'
-    },
-    label: {
-      show: true,
-      position: 'top',
-      textStyle: {
-        color: '#fff'
-      }
-    },
-    itemStyle: {
-      normal: {
-        color: '#28ffb3'
-      }
-    },
-    tooltip: {
-      show: false
-    },
-    areaStyle: {
-      normal: {
-        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-          offset: 0,
-          color: 'rgba(0,154,120,1)'
+  calculable: true,
+  xAxis: [
+    {
+      type: "category",
+      axisLine: {
+        lineStyle: {
+          color: "#90979c",
         },
-          {
-            offset: 1,
-            color: 'rgba(0,0,0, 0)'
-          }
-        ], false),
-        shadowColor: 'rgba(53,142,215, 0.9)',
-        shadowBlur: 20
-      }
+      },
+      splitLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
+      splitArea: {
+        show: false,
+      },
+      axisLabel: {
+        interval: 0,
+      },
+      data: xData,
     },
-    data: [393, 438, 485, 631, 689, 824, 987]
-  }, {
-    name: '最新注册量',
-    type: 'bar',
-    barWidth: 20,
-    tooltip: {
-      show: false
+  ],
+  yAxis: [
+    {
+      type: "value",
+      splitLine: {
+        show: false,
+      },
+      axisLine: {
+        lineStyle: {
+          color: "#90979c",
+        },
+      },
+      axisTick: {
+        show: false,
+      },
+      axisLabel: {
+        interval: 0,
+      },
+      splitArea: {
+        show: false,
+      },
     },
-    label: {
+  ],
+  dataZoom: [
+    {
       show: true,
-      position: 'top',
+      height: 15,
+      xAxisIndex: [0],
+      bottom: 6,
+      start: 10,
+      end: 80,
+      handleIcon:
+        "path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z",
+      handleSize: "110%",
+      handleStyle: {
+        color: "#d3dee5",
+      },
       textStyle: {
-        color: '#fff'
-      }
+        color: "#fff",
+      },
+      borderColor: "#90979c",
     },
-    itemStyle: {
-      normal: {
-        color: function (params) {
-          var colorList = ['#0ec1ff', '#10cdff', '#12daff', '#15ebff', '#17f8ff', '#1cfffb', '#1dfff1']
-          return colorList[params.dataIndex]
+    {
+      type: "inside",
+      show: true,
+      height: 7,
+      start: 1,
+      end: 35,
+    },
+  ],
+  series: [
+    {
+      name: "女",
+      type: "bar",
+      stack: "总量",
+      barMaxWidth: 25,
+      barGap: "10%",
+      itemStyle: {
+        normal: {
+          color: "rgba(255,144,128,1)",
+          label: {
+            show: true,
+            textStyle: {
+              color: "#fff",
+            },
+            position: "inside",
+            formatter: function (p) {
+              return p.value > 0 ? p.value : "";
+            },
+          },
+        },
+      },
+      data: [
+        709, 1917, 2455, 2610, 1719, 1433, 1544, 3285, 5208, 3372, 2484, 4078,
+      ],
+    },
+
+    {
+      name: "男",
+      type: "bar",
+      stack: "总量",
+      itemStyle: {
+        normal: {
+          color: "rgba(0,191,183,1)",
+          barBorderRadius: 0,
+          label: {
+            show: true,
+            position: "inside",
+            formatter: function (p) {
+              return p.value > 0 ? p.value : "";
+            },
+          },
+        },
+      },
+      data: [327, 1776, 507, 1200, 800, 482, 204, 1390, 1001, 951, 381, 220],
+    },
+    {
+      name: "总数",
+      type: "line",
+      symbolSize: 10,
+      symbol: "circle",
+      itemStyle: {
+        normal: {
+          color: "rgba(252,230,48,1)",
+          barBorderRadius: 0,
+          label: {
+            show: true,
+            position: "top",
+            formatter: function (p) {
+              return p.value > 0 ? p.value : "";
+            },
+          },
+        },
+      },
+      data: [
+        1036, 3693, 2962, 3810, 2519, 1915, 1748, 4675, 6209, 4323, 2865, 4298,
+      ],
+    },
+  ],
+};
+
+
+export const sexOptions = {
+  title: {
+    text: "男女占比",
+    left: "5%",
+    top: '2%',
+    textStyle: {
+      color: "#222",
+    },
+  },
+
+  tooltip: {
+    trigger: "item",
+    formatter: "{b} : {c} ({d}%)",
+  },
+
+  visualMap: {
+    show: false,
+    min: 500,
+    max: 600,
+    inRange: {
+      //colorLightness: [0, 1]
+    },
+  },
+  series: [
+    {
+      name: "访问来源",
+      type: "pie",
+      radius: "50%",
+      center: ["50%", "50%"],
+      color: ["rgb(131,249,103)", "#FBFE27", "#FE5050", "#1DB7E5"], //'#FBFE27','rgb(11,228,96)','#FE5050'
+      data: [
+        {
+          value: 285,
+          name: "黑名单查询",
+        },
+        {
+          value: 410,
+          name: "红名单查询",
+        },
+        {
+          value: 274,
+          name: "法人行政处罚",
+        },
+        {
+          value: 235,
+          name: "其它查询",
+        },
+      ].sort(function (a, b) {
+        return a.value - b.value;
+      }),
+      roseType: "radius",
+
+      label: {
+        normal: {
+          formatter: ["{c|{c}次}", "{b|{b}}"].join("\n"),
+          rich: {
+            c: {
+              color: "rgb(21,46,64)",
+              fontSize: 20,
+              fontWeight: "bold",
+              lineHeight: 5,
+            },
+            b: {
+              color: "rgb(98,137,169)",
+              fontSize: 15,
+              height: 40,
+            },
+          },
+        },
+      },
+      labelLine: {
+        normal: {
+          lineStyle: {
+            color: "rgb(98,137,169)",
+          },
+          smooth: 0.2,
+          length: 10,
+          length2: 20,
+        },
+      },
+      itemStyle: {
+        normal: {
+        },
+      },
+    },
+  ],
+};
+
+
+export const moneyOptions = {
+  title: {
+    text: "哎呦,不错哦",
+    textStyle: {
+      align: "center",
+      color: "#fff",
+      fontSize: 20,
+    },
+    top: "5%",
+    left: "center",
+  },
+  tooltip: {
+    trigger: "axis",
+    axisPointer: {
+      lineStyle: {
+        color: {
+          type: "linear",
+          x: 0,
+          y: 0,
+          x2: 0,
+          y2: 1,
+          colorStops: [
+            {
+              offset: 0,
+              color: "rgba(0, 255, 233,1)",
+            },
+            {
+              offset: 0.5,
+              color: "rgba(255, 0, 255,1)",
+            },
+            {
+              offset: 1,
+              color: "rgba(233, 255, 0,1)",
+            },
+          ],
+          global: false,
+        },
+      },
+    },
+  },
+  grid: {
+    top: "15%",
+    left: "5%",
+    right: "5%",
+    bottom: "15%",
+    // containLabel: true
+  },
+  xAxis: [
+    {
+      type: "category",
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: '#dedede'
         }
-      }
+      },
+      splitArea: {
+        // show: true,
+        color: "#f00",
+        lineStyle: {
+          color: "#f00",
+        },
+      },
+      axisLabel: {
+        color: "#8a8a8a",
+      },
+      splitLine: {
+        show: false,
+      },
+      boundaryGap: false,
+      data: ["A", "B", "C", "D", "E", "F"],
     },
-    data: [200, 382, 102, 267, 186, 315, 316]
-  }]
-}
+  ],
+
+  yAxis: [
+    {
+      type: "value",
+      min: 0,
+      // max: 140,
+      splitNumber: 4,
+      splitLine: {
+        show: true,
+        lineStyle: {
+          color: "rgba(0,0,0,0.1)",
+        },
+      },
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: '#d8d8d0'
+        }
+      },
+      axisLabel: {
+        show: false,
+        margin: 20,
+        textStyle: {
+          color: "#d1e6eb",
+        },
+      },
+      axisTick: {
+        show: false,
+      },
+    },
+  ],
+  series: [
+    {
+      name: "注册总量",
+      type: "line",
+      // smooth: true, //是否平滑
+      showAllSymbol: true,
+      // symbol: 'image://./static/images/guang-circle.png',
+      symbol: "circle",
+      symbolSize: 25,
+      lineStyle: {
+        normal: {
+          color: "#6c50f3",
+          shadowColor: "rgba(0, 0, 0, .3)",
+          shadowBlur: 0,
+          shadowOffsetY: 5,
+          shadowOffsetX: 5,
+        },
+      },
+      label: {
+        show: true,
+        position: "top",
+        textStyle: {
+          color: "#6c50f3",
+        },
+      },
+      itemStyle: {
+        color: "#6c50f3",
+        borderColor: "#fff",
+        borderWidth: 3,
+        shadowColor: "rgba(0, 0, 0, .3)",
+        shadowBlur: 0,
+        shadowOffsetY: 2,
+        shadowOffsetX: 2,
+      },
+      tooltip: {
+        show: false,
+      },
+      areaStyle: {
+        normal: {
+          color: new echarts.graphic.LinearGradient(
+            0,
+            0,
+            0,
+            1,
+            [
+              {
+                offset: 0,
+                color: "rgba(108,80,243,0.3)",
+              },
+              {
+                offset: 1,
+                color: "rgba(108,80,243,0)",
+              },
+            ],
+            false
+          ),
+          shadowColor: "rgba(108,80,243, 0.9)",
+          shadowBlur: 20,
+        },
+      },
+      data: [502.84, 205.97, 332.79, 281.55, 398.35, 214.02],
+    },
+    {
+      name: "注册总量",
+      type: "line",
+      // smooth: true, //是否平滑
+      showAllSymbol: true,
+      // symbol: 'image://./static/images/guang-circle.png',
+      symbol: "circle",
+      symbolSize: 25,
+      lineStyle: {
+        normal: {
+          color: "#00ca95",
+          shadowColor: "rgba(0, 0, 0, .3)",
+          shadowBlur: 0,
+          shadowOffsetY: 5,
+          shadowOffsetX: 5,
+        },
+      },
+      label: {
+        show: true,
+        position: "top",
+        textStyle: {
+          color: "#00ca95",
+        },
+      },
+
+      itemStyle: {
+        color: "#00ca95",
+        borderColor: "#fff",
+        borderWidth: 3,
+        shadowColor: "rgba(0, 0, 0, .3)",
+        shadowBlur: 0,
+        shadowOffsetY: 2,
+        shadowOffsetX: 2,
+      },
+      tooltip: {
+        show: false,
+      },
+      areaStyle: {
+        normal: {
+          color: new echarts.graphic.LinearGradient(
+            0,
+            0,
+            0,
+            1,
+            [
+              {
+                offset: 0,
+                color: "rgba(0,202,149,0.3)",
+              },
+              {
+                offset: 1,
+                color: "rgba(0,202,149,0)",
+              },
+            ],
+            false
+          ),
+          shadowColor: "rgba(0,202,149, 0.9)",
+          shadowBlur: 20,
+        },
+      },
+      data: [281.55, 398.35, 214.02, 179.55, 289.57, 356.14],
+    },
+  ],
+};
+
+

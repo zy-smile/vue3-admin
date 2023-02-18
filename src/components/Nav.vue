@@ -1,5 +1,5 @@
 <template>
-    <nav>
+    <nav :style="{left: mainStore.collapseFlag ? '64px' : '220px'}">
         <el-icon size="28px" class="btn" @click="expandHandle">
           <Fold v-show="!isExpand"></Fold>
           <Expand v-show="isExpand"></Expand>
@@ -24,7 +24,6 @@ function expandHandle () {
 <style lang="less" scoped>
     nav {
         position: fixed;
-        left: 220px;
         top: 0;
         width: calc(100% - 220px);
         display: flex;

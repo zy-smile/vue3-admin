@@ -1,7 +1,7 @@
 <template>
-  <div class="menu">
+  <div class="menu" :style="{width: collapseFlag ? '64px' : '220px'}">
     <div class="logo" @click="alertHandle">
-      <img src="../assets/vue.svg" alt="">后台管理系统
+      <img src="../assets/vue.svg" alt=""><span class="text" v-show="!collapseFlag">后台管理系统</span>
     </div>
     <el-menu
         background-color="#373e44"
@@ -17,7 +17,7 @@
       </el-menu-item>
       <el-menu-item index="/echarts">
         <el-icon><HomeFilled /></el-icon>
-        <span>图表</span>
+        <span>地图</span>
       </el-menu-item>
       <el-menu-item index="/editor">
         <el-icon><HomeFilled /></el-icon>
@@ -56,17 +56,18 @@ export default {
   .menu {
     position: absolute;
     left: 0;
-    width: 220px;
     bottom: 0;
     top: 0;
     background-color: #373e44;
     .el-menu {
       height: calc(100% - 50px);
+      border-right: none;
     }
     .el-menu-item.is-active {
       background-color: rgb(67, 74, 80);
     }
     .logo {
+      width: 100%;
       height: 50px;
       color: #fff;
       display: flex;
