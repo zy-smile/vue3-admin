@@ -11,7 +11,7 @@ import './style/index.less'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
-const pinia:any = createPinia()
+const pinia = createPinia()
 
 const app = createApp(App)
 app.use(pinia)

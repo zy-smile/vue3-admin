@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref, watch, reactive } from "vue"
-import { useIndexStore } from "../pinia/index.ts"
+import { useIndexStore } from "../pinia/index.js"
 import { useRouter } from "vue-router"
 const router = useRouter()
 const active = ref("")

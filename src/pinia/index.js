@@ -20,10 +20,10 @@ export const useIndexStore = defineStore("mainStore", {
 		}
 	},
 	actions: {
-		expand(flag: any) {
+		expand(flag) {
 			this.collapseFlag = flag
 		},
-		setBreadList(data: any) {
+		setBreadList(data) {
 			this.breadList = data
 		},
 	},
