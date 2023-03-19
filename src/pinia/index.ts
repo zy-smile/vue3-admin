@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia"
 // setup组合api写法
 // import { ref } from 'vue'
 // export const useIndexStore = defineStore('share', () => {
@@ -12,15 +12,19 @@ import { defineStore } from 'pinia'
 //   }
 // })
 
-export const useIndexStore = defineStore('mainStore', {
-  state: () => {
-    return {
-      collapseFlag: false
-    }
-  },
-  actions: {
-    expand (flag) {
-      this.collapseFlag = flag
-    }
-  }
+export const useIndexStore = defineStore("mainStore", {
+	state: () => {
+		return {
+			collapseFlag: false,
+			breadList: [],
+		}
+	},
+	actions: {
+		expand(flag: any) {
+			this.collapseFlag = flag
+		},
+		setBreadList(data: any) {
+			this.breadList = data
+		},
+	},
 })

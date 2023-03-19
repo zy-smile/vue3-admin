@@ -82,6 +82,12 @@
 </template>
 <script setup>
 import { reactive, ref } from "vue"
+import { useRoute } from "vue-router"
+
+import { ElMessage } from "element-plus"
+import { Plus } from "@element-plus/icons-vue"
+const route = useRoute()
+console.log(route)
 const formRef = ref(null)
 const form = reactive({
 	username: "",
@@ -89,9 +95,6 @@ const form = reactive({
 	age: "",
 	time: "",
 })
-import { ElMessage } from "element-plus"
-import { Plus } from "@element-plus/icons-vue"
-
 const imageUrl = ref("")
 
 const handleAvatarSuccess = (response, uploadFile) => {

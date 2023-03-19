@@ -285,14 +285,17 @@ export const sexOptions = {
 
 export const moneyOptions = {
   title: {
-    text: "哎呦,不错哦",
-    textStyle: {
-      align: "center",
-      color: "#fff",
-      fontSize: 20,
-    },
-    top: "5%",
-    left: "center",
+    text: "月人数统计",
+    top: '2%',
+    left: '3%'
+    // show: true,
+    // textStyle: {
+    //   align: "center",
+    //   color: "#fff",
+    //   fontSize: 20,
+    // },
+    // top: "10%",
+    // left: "center",
   },
   tooltip: {
     trigger: "axis",
@@ -391,18 +394,14 @@ export const moneyOptions = {
     {
       name: "注册总量",
       type: "line",
-      // smooth: true, //是否平滑
+      smooth: true, //是否平滑
       showAllSymbol: true,
       // symbol: 'image://./static/images/guang-circle.png',
       symbol: "circle",
-      symbolSize: 25,
+      symbolSize: 8,
       lineStyle: {
         normal: {
           color: "#6c50f3",
-          shadowColor: "rgba(0, 0, 0, .3)",
-          shadowBlur: 0,
-          shadowOffsetY: 5,
-          shadowOffsetX: 5,
         },
       },
       label: {
@@ -414,12 +413,6 @@ export const moneyOptions = {
       },
       itemStyle: {
         color: "#6c50f3",
-        borderColor: "#fff",
-        borderWidth: 3,
-        shadowColor: "rgba(0, 0, 0, .3)",
-        shadowBlur: 0,
-        shadowOffsetY: 2,
-        shadowOffsetX: 2,
       },
       tooltip: {
         show: false,
@@ -452,18 +445,14 @@ export const moneyOptions = {
     {
       name: "注册总量",
       type: "line",
-      // smooth: true, //是否平滑
+      smooth: true, //是否平滑
       showAllSymbol: true,
       // symbol: 'image://./static/images/guang-circle.png',
       symbol: "circle",
-      symbolSize: 25,
+      symbolSize: 6,
       lineStyle: {
         normal: {
           color: "#00ca95",
-          shadowColor: "rgba(0, 0, 0, .3)",
-          shadowBlur: 0,
-          shadowOffsetY: 5,
-          shadowOffsetX: 5,
         },
       },
       label: {
@@ -476,12 +465,6 @@ export const moneyOptions = {
 
       itemStyle: {
         color: "#00ca95",
-        borderColor: "#fff",
-        borderWidth: 3,
-        shadowColor: "rgba(0, 0, 0, .3)",
-        shadowBlur: 0,
-        shadowOffsetY: 2,
-        shadowOffsetX: 2,
       },
       tooltip: {
         show: false,

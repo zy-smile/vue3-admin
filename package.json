@@ -12,10 +12,12 @@
     "@element-plus/icons-vue": "^2.0.10",
     "echarts": "^4.6.0",
     "element-plus": "^2.2.18",
+    "file-saver": "^2.0.5",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.23",
     "vue": "^3.2.37",
-    "vue-router": "^4.1.5"
+    "vue-router": "^4.1.5",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.1.0",

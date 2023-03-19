@@ -29,12 +29,13 @@
 							:index="city.path"
 							v-for="city in item.children"
 							:key="city.id"
+							@click="clickBar"
 						>
 							<span>{{ city.label }}</span>
 						</el-menu-item>
 					</el-menu-item-group>
 				</el-sub-menu>
-				<el-menu-item :index="item.path" v-else>
+				<el-menu-item :index="item.path" @click="clickBar" v-else>
 					<el-icon>
 						<component :is="item.icon"></component>
 					</el-icon>
@@ -50,14 +51,52 @@ import { ref, watch } from "vue"
 import { HomeFilled } from "@element-plus/icons-vue"
 import { storeToRefs } from "pinia"
 import { useIndexStore } from "../pinia/index"
-import { menu } from "./menu.js"
-
+import { menu1, menu2, menu3 } from "./menu.js"
+import { getLocalItem } from "../utils/localData.ts"
+import { useRoute } from "vue-router"
+const menu = ref([])
+const route = useRoute()
+let role = getLocalItem("role")
+if (role == 1) {
+	menu.value = menu1
+} else if (role == 2) {
+	menu.value = menu2
+} else {
+	menu.value = menu3
+}
 const active = ref("/home")
 const mainStore = useIndexStore()
+
 const { collapseFlag } = storeToRefs(mainStore)
-watch(collapseFlag, () => {
-	console.log(collapseFlag.value)
-})
+watch(
+	() => route.path,
+	(newVal) => {
+		clickBar({ index: newVal })
+	},
+	{
+		immediate: true,
+	}
+)
+function clickBar(data) {
+	active.value = data.index
+	let pageArr = []
+	menu.value.map((item) => {
+		if (item.path == data.index) {
+			pageArr.push({ title: item.label, path: item.path })
+		} else {
+			item.children?.map((option) => {
+				if (option.path == data.index) {
+					pageArr = [
+						{ title: item.label },
+						{ title: option.label, path: option.path },
+					]
+				}
+			})
+		}
+	})
+	console.log(pageArr)
+	mainStore.setBreadList(pageArr)
+}
 </script>
 
 <style lang="less" scoped>
