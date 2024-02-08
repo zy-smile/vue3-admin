@@ -10,6 +10,8 @@
 	},
 	"dependencies": {
 		"@element-plus/icons-vue": "^2.0.10",
+		"@wangeditor/editor": "^5.1.23",
+		"@wangeditor/editor-for-vue": "^5.1.12",
 		"echarts": "^4.6.0",
 		"element-plus": "^2.2.18",
 		"file-saver": "^2.0.5",

@@ -1,10 +1,10 @@
 <template>
 	<div class="menu" :style="{ width: collapseFlag ? '64px' : '220px' }">
 		<div class="logo" @click="alertHandle">
-			<img src="../assets/vue.svg" alt="" /><span
+			<img src="../assets/system_icon.png" alt="" /><span
 				class="text"
 				v-show="!collapseFlag"
-				>后台管理系统</span
+				>管理系统</span
 			>
 		</div>
 		<el-menu
@@ -94,7 +94,6 @@ function clickBar(data) {
 			})
 		}
 	})
-	console.log(pageArr)
 	mainStore.setBreadList(pageArr)
 }
 </script>
@@ -127,7 +126,7 @@ function clickBar(data) {
 		z-index: 999;
 
 		img {
-			width: 26px;
+			width: 28px;
 			height: 26px;
 			margin-right: 5px;
 		}

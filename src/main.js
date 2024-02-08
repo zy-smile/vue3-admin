@@ -11,6 +11,8 @@ import './style/index.less'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
+import '@wangeditor/editor/dist/css/style.css'
+
 const pinia = createPinia()
 
 const app = createApp(App)

@@ -4,14 +4,15 @@
 		:style="{ left: mainStore.collapseFlag ? '64px' : '220px' }"
 	>
 		<el-tag
-			v-for="tag in tagsList"
+			v-for="(tag,index) in tagsList"
 			:key="tag.path"
 			class="mx-1"
-			closable
+			:closable="tag.path == '/home' ? false : true"
 			:effect="active == tag.path ? 'dark' : 'plain'"
 			:disable-transitions="false"
-			@close="handleClose(tag)"
-			@click="changePage(tag.path)"
+			@close="handleClose(tag,index)"
+			@click="changePage(tag.path,index)"
+			:ref="tagRef"
 			size="large"
 		>
 			{{ tag.title }}
@@ -25,8 +26,15 @@ import { useIndexStore } from "../pinia/index.js"
 import { useRouter } from "vue-router"
 const router = useRouter()
 const active = ref("")
+const tagRefs = ref([])
+const tagRef = (el) => {
+	tagRefs.value.push(el)
+}
 const mainStore = useIndexStore()
-const tagsList = reactive([])
+const tagsList = reactive([{
+	title: '首页',
+	path: '/home'
+}])
 watch(
 	() => mainStore.breadList,
 	(newVal) => {
@@ -34,24 +42,29 @@ watch(
 		let index = tagsList.findIndex((item) => item.path == pathObj.path)
 		if (index == -1) {
 			tagsList.push(pathObj)
-			active.value = pathObj.path
 		}
+		active.value = pathObj.path
 	},
 	{ immediate: true }
 )
 
-function handleClose(tag) {
+function handleClose(tag,i) {
 	let index = tagsList.findIndex((item) => item.path == tag.path)
 	if (index != -1) {
 		tagsList.splice(index, 1)
-		if (tagsList.length) {
-			router.push({ path: tagsList[tagsList.length - 1].path })
+		if(i - 1 >= 0) {
+			let url = tagsList[i - 1] ? tagsList[i - 1].path : tagsList[0].path
+			changePage(url)
 		}
 	}
 }
 
-function changePage(path) {
+function changePage(path,index) {
 	active.value = path
+	tagRefs.value[index].$el.scrollIntoView({
+		behavior: 'smooth',
+		inline: 'center'
+	})
 	router.push({ path: path })
 }
 </script>
@@ -64,6 +77,11 @@ function changePage(path) {
 	width: calc(100% - 220px);
 	padding: 5px 10px 0 10px;
 	background-color: #fff;
+	overflow-x: auto;
+	white-space: nowrap;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 	.el-tag {
 		margin-right: 10px;
 		cursor: pointer;
