@@ -1,8 +1,15 @@
-import { HomeFilled, DataLine,Suitcase,Warning,Operation } from "@element-plus/icons-vue"
-import { getLocalItem } from '../utils/localData'
+import {
+	HomeFilled,
+	DataLine,
+	Suitcase,
+	Warning,
+	Operation
+} from "@element-plus/icons-vue"
+import {
+	getLocalItem
+} from '../utils/localData'
 
-const menu1 = [
-	{
+const menu1 = [{
 		label: "首页",
 		icon: HomeFilled,
 		id: "1",
@@ -13,8 +20,7 @@ const menu1 = [
 		label: "数据操作",
 		icon: DataLine,
 		id: "3",
-		children: [
-			{
+		children: [{
 				label: "表单",
 				id: "3-1",
 				path: "/form",
@@ -23,12 +29,8 @@ const menu1 = [
 				label: "表格",
 				id: "3-2",
 				path: "/table",
-			},
-			{
-				label: "excel",
-				id: "4-1",
-				path: "/excel",
-			},
+			}
+
 		],
 	},
 	{
@@ -41,13 +43,12 @@ const menu1 = [
 		label: "其他",
 		icon: Operation,
 		id: "2",
-		children: [
-			{
+		children: [{
 				label: "富文本",
 				id: "2-1",
 				path: "/editor",
 			},
-			
+
 			{
 				label: "图表",
 				id: "2-3",
@@ -56,8 +57,7 @@ const menu1 = [
 		],
 	},
 ]
-const menu2 = [
-	{
+const menu2 = [{
 		label: "首页",
 		icon: HomeFilled,
 		id: "1",
@@ -68,8 +68,7 @@ const menu2 = [
 		label: "数据操作",
 		icon: DataLine,
 		id: "3",
-		children: [
-			{
+		children: [{
 				label: "表单",
 				id: "3-1",
 				path: "/form",
@@ -78,20 +77,14 @@ const menu2 = [
 				label: "表格",
 				id: "3-2",
 				path: "/table",
-			},
-			{
-				label: "excel",
-				id: "4-1",
-				path: "/excel",
-			},
+			}
 		],
 	},
 	{
 		label: "其他",
 		icon: Operation,
 		id: "2",
-		children: [
-			{
+		children: [{
 				label: "富文本",
 				id: "2-1",
 				path: "/editor",
@@ -104,8 +97,7 @@ const menu2 = [
 		],
 	},
 ]
-const menu3 = [
-	{
+const menu3 = [{
 		label: "首页",
 		icon: HomeFilled,
 		id: "1",
@@ -116,8 +108,7 @@ const menu3 = [
 		label: "数据操作",
 		icon: DataLine,
 		id: "3",
-		children: [
-			{
+		children: [{
 				label: "表单",
 				id: "3-1",
 				path: "/form",
@@ -126,20 +117,14 @@ const menu3 = [
 				label: "表格",
 				id: "3-2",
 				path: "/table",
-			},
-			{
-				label: "excel",
-				id: "4-1",
-				path: "/excel",
-			},
+			}
 		],
 	},
 	{
 		label: "其他",
 		icon: Operation,
 		id: "2",
-		children: [
-			{
+		children: [{
 				label: "富文本",
 				id: "2-1",
 				path: "/editor",
@@ -154,7 +139,7 @@ const menu3 = [
 ]
 
 export {
-    menu1,
+	menu1,
 	menu2,
 	menu3
 }

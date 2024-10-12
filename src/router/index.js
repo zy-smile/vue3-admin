@@ -1,8 +1,14 @@
-import { ElMessage } from "element-plus"
-import { createRouter, createWebHistory } from "vue-router"
-import { getLocalItem } from "../utils/localData"
-const routes = [
-	{
+import {
+	ElMessage
+} from "element-plus"
+import {
+	createRouter,
+	createWebHistory
+} from "vue-router"
+import {
+	getLocalItem
+} from "../utils/localData"
+const routes = [{
 		path: "/",
 		redirect: "/login",
 	},
@@ -14,8 +20,7 @@ const routes = [
 	{
 		path: "/",
 		component: () => import("../components/layout.vue"),
-		children: [
-			{
+		children: [{
 				path: "/",
 				redirect: "/home",
 			},
@@ -49,11 +54,6 @@ const routes = [
 				component: () => import("../views/table/table.vue"),
 			},
 			{
-				path: "/excel",
-				name: "excel",
-				component: () => import("../views/tools/excel.vue"),
-			},
-			{
 				path: "/role",
 				name: "role",
 				component: () => import("../views/role/role.vue"),
@@ -77,7 +77,9 @@ router.beforeEach((to, from, next) => {
 		} else {
 			ElMessage.warning("身份识别失败，请重新登录！")
 			setTimeout(() => {
-				next({ path: "/login" })
+				next({
+					path: "/login"
+				})
 			}, 800)
 		}
 	}

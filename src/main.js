@@ -1,5 +1,9 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import {
+  createApp
+} from 'vue'
+import {
+  createPinia
+} from 'pinia'
 import App from './App.vue'
 import router from './router'
 /* 浏览器初始化样式 */
@@ -11,11 +15,14 @@ import './style/index.less'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
-import '@wangeditor/editor/dist/css/style.css'
+import installFun from './utils/install'
+
+
 
 const pinia = createPinia()
 
 const app = createApp(App)
+app.use(installFun)
 app.use(pinia)
 app.use(router)
 app.use(ElementPlus)
