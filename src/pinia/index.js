@@ -1,4 +1,9 @@
-import { defineStore } from "pinia"
+import {
+	defineStore
+} from "pinia"
+import {
+	setLocalItem
+} from "../utils/localData"
 // setup组合api写法
 // import { ref } from 'vue'
 // export const useIndexStore = defineStore('share', () => {
@@ -15,8 +20,10 @@ import { defineStore } from "pinia"
 export const useIndexStore = defineStore("mainStore", {
 	state: () => {
 		return {
-			collapseFlag: false,
-			breadList: [],
+			collapseFlag: false, //侧边栏折叠
+			breadList: [], //面包屑
+			routesList: [], //动态路由
+			refleshFlag: false,
 		}
 	},
 	actions: {
@@ -26,5 +33,12 @@ export const useIndexStore = defineStore("mainStore", {
 		setBreadList(data) {
 			this.breadList = data
 		},
+		setRoutesList(data) {
+			this.routesList = data
+			setLocalItem('routesList', data)
+		},
+		setRefleshFlag(flag) {
+			this.refleshFlag = flag
+		}
 	},
 })

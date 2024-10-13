@@ -1,5 +1,10 @@
 export const getLocalItem = function (key: string) {
 	let val = localStorage.getItem(key)
+	try {
+		val = JSON.parse(val)
+	} catch (error) {
+		return val
+	}
 	return val
 }
 
