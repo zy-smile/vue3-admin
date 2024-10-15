@@ -1,8 +1,8 @@
 <template>
-  <side-bar></side-bar>
+  <side-bar class="side-bar"></side-bar>
   <div class="container" :style="{ marginLeft: collapseFlag ? '64px' : '220px' }">
-    <Nav @refleshHandle="refleshHandle" />
-    <PageTag />
+    <Nav @refleshHandle="refleshHandle" class="nav" />
+    <PageTag class="page-tag" />
     <div class="main" v-if="showFlag">
       <router-view></router-view>
     </div>
@@ -40,6 +40,52 @@ async function refleshHandle() {
     background-color: #e4e4e4;
     overflow-y: auto;
     padding: 0 20px;
+  }
+}
+html[data-animation='animation_class'] {
+  .side-bar {
+    animation: animation_class1 0.5s ease-in;
+  }
+  .nav {
+    animation: animation_class2 0.5s ease-in;
+  }
+  .page-tag {
+    animation: animation_class3 0.5s ease-in;
+  }
+  .main {
+    animation: animation_class4 0.8s;
+  }
+  @keyframes animation_class1 {
+    from {
+      transform: translateX(-300px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes animation_class2 {
+    from {
+      transform: translateY(-300px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes animation_class3 {
+    from {
+      transform: translateY(-300px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes animation_class4 {
+    from {
+      transform: translateX(1600px);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
 }
 </style>

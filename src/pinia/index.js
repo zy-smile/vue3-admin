@@ -2,7 +2,8 @@ import {
 	defineStore
 } from "pinia"
 import {
-	setLocalItem
+	setLocalItem,
+	getLocalItem
 } from "../utils/localData"
 // setup组合api写法
 // import { ref } from 'vue'
@@ -24,6 +25,10 @@ export const useIndexStore = defineStore("mainStore", {
 			breadList: [], //面包屑
 			routesList: [], //动态路由
 			refleshFlag: false,
+			settingParams: getLocalItem('settingParams') || {
+				animation: 1,
+				themeColor: '#00b494',
+			},
 		}
 	},
 	actions: {
@@ -39,6 +44,10 @@ export const useIndexStore = defineStore("mainStore", {
 		},
 		setRefleshFlag(flag) {
 			this.refleshFlag = flag
-		}
+		},
+		setSettingParams(data) {
+			this.settingParams = data
+			setLocalItem('settingParams', data)
+		},
 	},
 })

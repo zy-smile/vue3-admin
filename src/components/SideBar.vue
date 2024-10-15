@@ -99,7 +99,7 @@ function clickBar(data) {
   }
 
   .el-menu-item.is-active {
-    background-color: #00b494;
+    background-color: var(--primary-color);
   }
 
   .logo {

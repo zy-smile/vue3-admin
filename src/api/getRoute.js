@@ -5,7 +5,9 @@ import {
   Warning,
   Operation
 } from "@element-plus/icons-vue"
-
+import {
+  markRaw
+} from 'vue'
 import {
   getLocalItem
 } from "../utils/localData.ts";
@@ -17,7 +19,7 @@ import {
 const menuList = [{
     label: "首页",
     name: 'home',
-    icon: HomeFilled,
+    icon: markRaw(HomeFilled),
     id: "1",
     pid: null,
     path: "/home",
@@ -27,7 +29,7 @@ const menuList = [{
 
   {
     label: "数据操作",
-    icon: DataLine,
+    icon: markRaw(DataLine),
     id: "3",
     pid: null,
     children: [{
@@ -61,18 +63,21 @@ const menuList = [{
       role: [1],
       name: 'upload',
       path: "/upload",
+      componentUrl: '../views/tools/upload.vue'
+
     }, {
       label: '水印',
       id: "4-2",
       pid: '4',
       role: [1],
       name: 'watermark',
-      path: '/watermark'
+      path: '/watermark',
+      componentUrl: '../views/tools/watermark.vue'
     }, ],
   },
   {
     label: "权限设置",
-    icon: Warning,
+    icon: markRaw(Warning),
     id: "5",
     pid: null,
     name: 'role',
@@ -82,7 +87,7 @@ const menuList = [{
   },
   {
     label: "其他",
-    icon: Operation,
+    icon: markRaw(Operation),
     id: "2",
     pid: null,
     children: [{

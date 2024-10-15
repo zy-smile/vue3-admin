@@ -1,9 +1,9 @@
+
 <template>
   <nav :style="{ left: mainStore.collapseFlag ? '64px' : '220px' }">
     <div class="left-box">
       <el-icon size="28px" class="btn" @click="expandHandle">
-        <Fold v-show="!isExpand"></Fold>
-        <Expand v-show="isExpand"></Expand>
+        <component :is="icons[isExpand ? 'Expand' : 'Fold']" />
       </el-icon>
       <el-breadcrumb :separator-icon="ArrowRight" class="bread_list">
         <el-breadcrumb-item :to="{ path: item.path || '' }" v-for="(item, index) in breadList" :key="index">{{ item.title }}</el-breadcrumb-item>
@@ -11,11 +11,10 @@
     </div>
     <div class="tools">
       <el-icon @click="refreshHandle">
-        <Refresh />
+        <component :is="icons.Refresh" />
       </el-icon>
-      <el-icon>
-
-        <FullScreen />
+      <el-icon @click="screenHandle">
+        <component :is="icons.FullScreen" />
       </el-icon>
       <el-dropdown>
         <div class="user_box">
@@ -25,15 +24,45 @@
 
         <template #dropdown>
           <el-dropdown-menu>
+            <el-dropdown-item @click="upRightBar">设置</el-dropdown-item>
             <el-dropdown-item @click="loginout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
     </div>
+    <teleport to='body'>
+      <el-drawer v-model="drawerFlag" direction="rtl">
+        <template #header>
+          <h4>动态参数设置</h4>
+        </template>
+        <template #default>
+          <el-form :model="settingObj">
+            <el-form-item label="首页渲染动画:">
+              <el-radio-group v-model="settingObj.animation">
+                <el-radio :label="1" size="large">
+                  有
+                </el-radio>
+                <el-radio :label="0" size="large">
+                  无
+                </el-radio>
+              </el-radio-group>
+            </el-form-item>
+            <el-form-item label="主题色:">
+              <el-color-picker v-model="settingObj.themeColor" />
+            </el-form-item>
+          </el-form>
+        </template>
+        <template #footer>
+          <div style="flex: auto">
+            <el-button type="primary" @click="drawerFlag = false">确定</el-button>
+          </div>
+        </template>
+      </el-drawer>
+    </teleport>
   </nav>
-</template>
-
+</template> 
 <script setup>
+import { ref, reactive, watch, markRaw } from 'vue';
 import {
   Fold,
   Expand,
@@ -41,15 +70,30 @@ import {
   FullScreen,
   Refresh,
 } from '@element-plus/icons-vue';
-import { ref, watch } from 'vue';
+import { useFullScreen } from '../hooks/event';
+
 import { storeToRefs } from 'pinia';
 import { useIndexStore } from '../pinia/index';
 import { useRouter } from 'vue-router';
-const emits = defineEmits(['refleshHandle']);
 import { deleteLocalItem, getLocalItem } from '../utils/localData';
+import { useSetting } from '../hooks/settings';
+const icons = {
+  Fold: markRaw(Fold),
+  Expand: markRaw(Expand),
+  ArrowRight: markRaw(ArrowRight),
+  FullScreen: markRaw(FullScreen),
+  Refresh: markRaw(Refresh),
+};
+const emits = defineEmits(['refleshHandle']);
+
 const isExpand = ref(false);
+const isFullScreen = ref(false);
+const drawerFlag = ref(false);
+
 const mainStore = useIndexStore();
 const { breadList } = storeToRefs(mainStore);
+const { screenHandle } = useFullScreen();
+const { settingObj } = useSetting();
 const router = useRouter();
 const username = getLocalItem('username');
 
@@ -64,7 +108,13 @@ function loginout() {
   deleteLocalItem('role');
   router.push({ path: '/login' });
 }
+// 设置
+function upRightBar() {
+  drawerFlag.value = true;
+}
 </script>
+
+
 
 <style lang="less" scoped>
 nav {
@@ -112,6 +162,13 @@ nav {
       font-size: 21px;
       color: #42423f;
     }
+  }
+}
+.drawer-content-item {
+  display: flex;
+  align-items: center;
+  span {
+    width: 100px;
   }
 }
 </style>

@@ -26,3 +26,32 @@ export const buildTree = function (data, pid) {
   })
   return result
 }
+
+// 处理图片并发上传问题
+export const requestConcurrent = (requestList, max) => {
+  let result = [];
+  let concurrent = 0;
+  let index = 0;
+  console.log(requestList, 'list')
+  let requestNum = requestList.length > max ? max : requestList.length;
+  const handleRequest = () => {
+    if (concurrent >= max) return;
+    if (index >= requestList.length) return;
+    concurrent++;
+    requestList[index]().then((res) => {
+      result.push(res);
+      concurrent--;
+      index++;
+      handleRequest();
+    }).catch((err) => {
+      concurrent--;
+      index++;
+      handleRequest();
+    });
+  };
+  for (let i = 0; i < 3; i++) {
+    index = i;
+    handleRequest()
+  }
+  return result;
+}
