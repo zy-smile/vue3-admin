@@ -18,12 +18,13 @@ request.interceptors.response.use((response) => {
 });
 
 function requestFun(method, url, data, config) {
+  console.log(url, 'url')
   return request({
     method,
     url,
     data,
     headers: {
-      'Content-Type': config.contentType || 'application/json',
+      'Content-Type': config && config.contentType || 'application/json',
     },
   });
 }
