@@ -304,6 +304,7 @@ function shuffle(array: any[]) {
     }
     .map_box {
       height: 620px;
+      border-bottom: 1px dashed #239ee8;
     }
     .bar_bottom {
       height: 360px;

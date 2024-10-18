@@ -84,6 +84,20 @@ const menuList = [{
       role: [1],
       componentUrl: '../views/other/editor.vue'
     }],
+  }, {
+    label: '交互',
+    id: "7",
+    pid: null,
+    icon: markRaw(Warning),
+    children: [{
+      label: "过渡动画",
+      id: "7-1",
+      pid: '7',
+      name: 'animation',
+      role: [1],
+      path: "/animation",
+      componentUrl: '../views/tools/transition.vue'
+    }],
   },
   {
     label: "角色管理",
