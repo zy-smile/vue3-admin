@@ -83,6 +83,14 @@ const menuList = [{
       name: 'editor',
       role: [1],
       componentUrl: '../views/other/editor.vue'
+    }, {
+      label: '音频',
+      id: "4-4",
+      pid: '4',
+      role: [1],
+      name: 'audio',
+      path: '/audio',
+      componentUrl: '../views/tools/audio.vue'
     }],
   }, {
     label: '交互',
