@@ -17,7 +17,6 @@ import {
 
 const modulesPage =
 	import.meta.glob("../views/**/*.vue")
-console.log(modulesPage, 'modulesPage')
 const routes = [{
 		path: "/",
 		redirect: "/login",
@@ -89,7 +88,6 @@ const router = createRouter({
 let isAddRoute = false;
 let routeNames = {}
 router.beforeEach((to, from, next) => {
-	console.log(to, from)
 	let role = getLocalItem("role")
 	if (to.path == "/login") {
 
@@ -107,8 +105,6 @@ router.beforeEach((to, from, next) => {
 						setLocalItem('routesList', res)
 						let result = flatTree(res)
 						formatRoutes(result)
-						console.log(router.getRoutes(), 'routes')
-						console.log(to, 'to')
 						next({
 							path: to.path,
 							replace: true,
@@ -117,8 +113,6 @@ router.beforeEach((to, from, next) => {
 				} else {
 					let result = flatTree(routesList)
 					formatRoutes(result)
-					console.log(router.getRoutes(), 'routes')
-					console.log(to, 'to')
 					next({
 						path: to.path,
 						replace: true,
@@ -152,7 +146,12 @@ function formatRoutes(list) {
 				path: item.path,
 				component: () => modulesPage[item.componentUrl] ? modulesPage[item.componentUrl]() : import('../views/404.vue'),
 			}
-			router.addRoute('layout', obj)
+			if (item.noLayout) {
+				router.addRoute(obj)
+			} else {
+				router.addRoute('layout', obj)
+			}
+
 		}
 
 	})

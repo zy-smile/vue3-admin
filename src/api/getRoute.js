@@ -3,7 +3,8 @@ import {
   DataLine,
   Suitcase,
   Warning,
-  Operation
+  Operation,
+  Tools
 } from "@element-plus/icons-vue"
 import {
   markRaw
@@ -56,6 +57,7 @@ const menuList = [{
     label: '工具',
     id: "4",
     pid: null,
+    icon: markRaw(Tools),
     children: [{
       label: "文件上传",
       id: "4-1",
@@ -73,31 +75,44 @@ const menuList = [{
       name: 'watermark',
       path: '/watermark',
       componentUrl: '../views/tools/watermark.vue'
-    }, ],
-  },
-  {
-    label: "权限设置",
-    icon: markRaw(Warning),
-    id: "5",
-    pid: null,
-    name: 'role',
-    role: [1],
-    path: "/role",
-    componentUrl: '../views/role/role.vue'
-  },
-  {
-    label: "其他",
-    icon: markRaw(Operation),
-    id: "2",
-    pid: null,
-    children: [{
+    }, {
       label: "富文本",
-      id: "2-1",
-      pid: '2',
+      id: "4-3",
+      pid: '4',
       path: "/editor",
       name: 'editor',
       role: [1],
       componentUrl: '../views/other/editor.vue'
+    }],
+  },
+  {
+    label: "角色管理",
+    icon: markRaw(Operation),
+    id: "5",
+    pid: null,
+    children: [{
+      label: "权限设置",
+      id: "5-1",
+      pid: '5',
+      name: 'role',
+      role: [1],
+      path: "/role",
+      componentUrl: '../views/role/role.vue'
+    }],
+  }, {
+    label: "数据可视化",
+    icon: markRaw(Operation),
+    id: "6",
+    pid: null,
+    children: [{
+      label: "数据报表",
+      id: "6-1",
+      pid: '6',
+      name: 'dataReport',
+      role: [1],
+      path: "/dataReport",
+      noLayout: true,
+      componentUrl: '../views/echarts/dataReport.vue'
     }],
   },
 ]
@@ -116,6 +131,7 @@ function getRoutes() {
 // 获取处理过权限的路由列表
 function getMenuList(role) {
   let flatMenuArr = flatTree(menuList);
+  console.log([...flatMenuArr], '拍平数组')
   let resultList = []
   let newMenuList = []
   role = Number(role)

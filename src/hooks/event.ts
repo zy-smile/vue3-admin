@@ -26,4 +26,8 @@ export const useFullScreen = function () {
   }
 }
 
-// 
+// resize事件
+export const useScreenResize = function() {
+
+  
+}

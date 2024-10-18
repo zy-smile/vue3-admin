@@ -27,6 +27,17 @@ export const buildTree = function (data, pid) {
   return result
 }
 
+// 防抖函数
+export const debounce = function (fn, delay) {
+  let timer = null
+  return function (...args) {
+    if (timer) clearTimeout(timer)
+    timer = setTimeout(() => {
+      fn.apply(this, args)
+    }, delay)
+  }
+}
+
 // 处理图片并发上传问题
 export const requestConcurrent = (requestList, max) => {
   let result = [];
